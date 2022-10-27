@@ -9,13 +9,38 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./listar-pensamento.component.css'],
 })
 export class ListarPensamentoComponent implements OnInit {
-  listaPensamento: Pensamento[] = [];
+  listaPensamentos: Pensamento[] = [];
+  paginaAtual: number = 1;
+  haMaisPensamentos: boolean = true;
+  filtro: string = '';
 
   constructor(private service: PensamentoService) {}
 
   ngOnInit(): void {
-    this.service.listar().subscribe((listaPensamento) => {
-      this.listaPensamento = listaPensamento;
-    });
+    this.service
+      .listar(this.paginaAtual, this.filtro)
+      .subscribe((listaPensamentos) => {
+        this.listaPensamentos = listaPensamentos;
+      });
+  }
+
+  caregarMaisPensamentos() {
+    this.service
+      .listar(++this.paginaAtual, this.filtro)
+      .subscribe((listaPensamentos) => {
+        this.listaPensamentos.push(...listaPensamentos);
+        if (this.listaPensamentos.length) {
+          this.haMaisPensamentos = false;
+        }
+      });
+  }
+  pesquisarPensamentos() {
+    this.haMaisPensamentos = true;
+    this.paginaAtual = 1;
+    this.service
+      .listar(this.paginaAtual, this.filtro)
+      .subscribe((listaPensamentos) => {
+        this.listaPensamentos = listaPensamentos;
+      });
   }
 }

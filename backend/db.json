@@ -4,19 +4,22 @@
       "id": 1,
       "conteudo": "Quem bom que você veio",
       "autoria": "Nay",
-      "modelo": "modelo1"
+      "modelo": "modelo1",
+      "favorito": true
     },
     {
       "id": 2,
       "conteudo": "Estudando Angular",
       "autoria": "Dev Alura",
-      "modelo": "modelo2"
+      "modelo": "modelo2",
+      "favorito": false
     },
     {
       "id": 3,
       "conteudo": "Angular é o melhor",
       "autoria": "Robert",
-      "modelo": "modelo3"
+      "modelo": "modelo3",
+      "favorito": false
     }
   ]
 }

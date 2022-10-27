@@ -23,12 +23,10 @@ export class CriarPensamentoComponent implements OnInit {
     this.formulario = this.formbuilder.group({
       autoria: [
         '',
-        Validators.compose([
-          Validators.required,
-          Validators.minLength(3),
-          minusculoValidator,
-        ]),
+        Validators.compose([Validators.required, Validators.minLength(3)]),
       ],
+      modulo: ['modelo1'],
+      favorito: [false],
     });
   }
 
